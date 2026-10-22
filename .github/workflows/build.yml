@@ -8,6 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip -q ./*.zip
+      - name: Kod düzeltmesi
+        run: sed -i 's/getComponentName(context)/ComponentName(context, AdminReceiver::class.java)/' KlonCalistirici/app/src/main/java/com/oguzhn/klonlayici/AdminReceiver.kt
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
