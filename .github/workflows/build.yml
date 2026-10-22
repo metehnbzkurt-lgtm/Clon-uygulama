@@ -8,8 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip -q ./*.zip
-      - name: Kod düzeltmesi
-        run: sed -i 's/getComponentName(context)/ComponentName(context, AdminReceiver::class.java)/' KlonCalistirici/app/src/main/java/com/oguzhn/klonlayici/AdminReceiver.kt
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -18,9 +16,9 @@ jobs:
         with:
           gradle-version: 8.9
           build-root-directory: KlonCalistirici
-      - run: gradle assembleDebug --no-daemon
+      - run: gradle assembleRelease --no-daemon
         working-directory: KlonCalistirici
       - uses: actions/upload-artifact@v4
         with:
-          name: KlonCalistirici-debug
-          path: KlonCalistirici/app/build/outputs/apk/debug/*.apk
+          name: KlonCalistirici-release
+          path: KlonCalistirici/app/build/outputs/apk/release/*.apk
